@@ -1,6 +1,6 @@
 {
   "name": "watch-and-run",
-  "version": "1.0.0",
+  "version": "0.1.0",
   "description": "watcher utility to run command on file/s update",
   "main": "index.js",
   "scripts": {
@@ -15,5 +15,17 @@
   "devDependencies": {
     "brittle": "^3.0.0-alpha.4",
     "standard": "^17.0.0"
-  }
+  },
+  "directories": {
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/rafapaezbas/watch-and-run.git"
+  },
+  "keywords": [],
+  "bugs": {
+    "url": "https://github.com/rafapaezbas/watch-and-run/issues"
+  },
+  "homepage": "https://github.com/rafapaezbas/watch-and-run#readme"
 }
