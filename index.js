@@ -9,6 +9,7 @@ module.exports = class Watcher extends EventEmitter {
     this.watchInterval = opts.watchInterval || 100
     this.intervals = new Map()
     this.destroyed = false
+    this.output = !!opts.output
   }
 
   async watch (file, lastMtimeMs, command) {
@@ -16,7 +17,12 @@ module.exports = class Watcher extends EventEmitter {
     const path = isAbsolute(file) ? file : join(process.env.PWD, file)
     const mtimeMs = (await stat(path)).mtimeMs
     if (mtimeMs > lastMtimeMs) {
-      exec(command)
+      exec(command, (err, stdout, stderr) => {
+        if(!this.output) return
+        if(err) console.log(err)
+        if(stdout) console.log(stdout)
+        if(stderr) console.log(stderr)
+      })
       this.emit('update', file)
     }
     this.intervals.set(file, setTimeout(async () =>
