@@ -1,0 +1,16 @@
+{
+  "name": "watch-and-run",
+  "version": "1.0.0",
+  "description": "watcher utility to run command on file/s update",
+  "main": "index.js",
+  "scripts": {
+    "fix": "standard --fix",
+    "test": "brittle test/*.test.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "brittle": "^3.0.0-alpha.4",
+    "standard": "^17.0.0"
+  }
+}
