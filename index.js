@@ -7,7 +7,6 @@ module.exports = class Watcher extends EventEmitter {
   constructor (opts = {}) {
     super()
     this.watchInterval = opts.watchInterval || 1000
-    this.intervals = new Map()
     this.destroyed = false
     this.output = !!opts.output
   }
@@ -18,19 +17,17 @@ module.exports = class Watcher extends EventEmitter {
     const mtimeMs = (await stat(path)).mtimeMs
     if (mtimeMs > lastMtimeMs) {
       exec(command, (err, stdout, stderr) => {
-        if(!this.output) return
-        if(err) console.log(err)
-        if(stdout) console.log(stdout)
-        if(stderr) console.log(stderr)
+        if (!this.output) return
+        if (err) console.log(err)
+        if (stdout) console.log(stdout)
+        if (stderr) console.log(stderr)
       })
       this.emit('update', file)
     }
-    this.intervals.set(file, setTimeout(async () =>
-      await this.watch(file, mtimeMs, command), this.watchInterval))
+    setTimeout(async () => await this.watch(file, mtimeMs, command), this.watchInterval)
   }
 
   destroy () {
     this.destroyed = true
-    if (this.interval) clearInterval(this.interval)
   }
 }
