@@ -1,6 +1,6 @@
 {
   "name": "@rafapaezbas/watch-and-run",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "watcher utility to run command on file/s update",
   "main": "index.js",
   "scripts": {
