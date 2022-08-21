@@ -5,7 +5,7 @@ Javascript utility to watch a file and run command on update.
 ### Installation
 
 ``` bash
-npm install -g watch-and-run
+npm install -g @rafapaezbas/watch-and-run
 ``` 
 
 ### Usage
