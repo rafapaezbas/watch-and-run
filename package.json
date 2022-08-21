@@ -7,6 +7,9 @@
     "fix": "standard --fix",
     "test": "brittle test/*.test.js"
   },
+  "bin": {
+    "watch-and-run": "bin.mjs"
+  },
   "author": "",
   "license": "ISC",
   "devDependencies": {

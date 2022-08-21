@@ -1,5 +1,7 @@
 const { EventEmitter } = require('events')
 const { stat } = require('fs/promises')
+const { exec } = require('child_process')
+const { join, isAbsolute } = require('path')
 
 module.exports = class Watcher extends EventEmitter {
   constructor (opts = {}) {
@@ -11,8 +13,10 @@ module.exports = class Watcher extends EventEmitter {
 
   async watch (file, lastMtimeMs, command) {
     if (this.destroyed) return
-    const mtimeMs = (await stat(file)).mtimeMs
+    const path = isAbsolute(file) ? file : join(process.env.PWD, file)
+    const mtimeMs = (await stat(path)).mtimeMs
     if (mtimeMs > lastMtimeMs) {
+      exec(command)
       this.emit('update', file)
     }
     this.intervals.set(file, setTimeout(async () =>
