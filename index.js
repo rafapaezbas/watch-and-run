@@ -6,7 +6,7 @@ const { join, isAbsolute } = require('path')
 module.exports = class Watcher extends EventEmitter {
   constructor (opts = {}) {
     super()
-    this.watchInterval = opts.watchInterval || 100
+    this.watchInterval = opts.watchInterval || 1000
     this.intervals = new Map()
     this.destroyed = false
     this.output = !!opts.output
