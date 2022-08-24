@@ -19,12 +19,12 @@ Watch-and-run v.0.1.0
   Run shell command on file update.
 
   Usage:
-  watch-and-run $file $command [-o]
+  watch-and-run $file,$another-file $command [-o]
 
   Options:
   -o: Print command output
 '
-watch-and-run index.html 'echo "updated"' -o
+watch-and-run index.html,index.js 'echo "updated"' -o
 ```
 
 ### Test

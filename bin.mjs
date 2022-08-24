@@ -2,18 +2,20 @@
 
 import Watcher from './index.js'
 
-const file = process.argv[2]
+const files = process.argv[2]
 const command = process.argv[3]
 const output = process.argv.find(a => a === '-o')
 
-if (!file || !command) {
+if (!files || !command) {
   printHelp()
 }
 
 const watcher = new Watcher({ output })
-await watcher.watch(file, undefined, command)
 
-console.log('Watching ', file)
+files.split(',').forEach(async (file) => {
+  await watcher.watch(file, undefined, command)
+  console.log('Watching ', file)
+})
 
 function printHelp () {
   console.log(`
